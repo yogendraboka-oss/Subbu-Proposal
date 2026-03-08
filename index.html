@@ -68,7 +68,7 @@ button:active{transform:scale(0.95);}
 </head>
 <body>
 
-<!-- PAGE 1 -->
+<!-- FIRST PAGE -->
 <div id="p1" class="page" style="display:block;">
   <h2>Sanuhh, Will You Be My Forever ♾️</h2>
   <img src="her.jpg" alt="Her Photo">
@@ -77,23 +77,23 @@ button:active{transform:scale(0.95);}
   <button id="no1">No 💔</button>
 </div>
 
-<!-- PAGE 2 -->
-<div id="p2" class="page">
+<!-- SPECIAL WARNING PAGE -->
+<div id="pNo1" class="page">
   <img src="me.JPG" alt="Me Photo">
+  <p>Kina Ho Yasto Aatanka...<br>
+  Mayaluuu ❤️<br>
+  Your Subbu Loves You A Lot So Please Click Yes!</p>
+  <button id="yes3">Yes ❤️</button>
+</div>
+
+<!-- SECOND PAGE (ME PHOTO) -->
+<div id="p2" class="page">
+  <img src="me.jpg" alt="Me Photo">
   <p>Timi mero First Love Huna Na Sakey Nii...<br>
   Mero Antim Timi Lai Nai Banauna Chahanxu.<br><br>
   Will You Be My Future Partner?</p>
   <button id="yes2">Yes ❤️</button>
   <button id="no2">No 💔</button>
-</div>
-
-<!-- PAGE NO MESSAGE -->
-<div id="pNo1" class="page">
-  <img src="me.jpg" alt="Me Photo">
-lolol  <p>Kina Ho Yasto Aatanka...<br>
-  Mayaluuu ❤️<br>
-  Your Subbu Loves You A Lot So Please Click Yes!</p>
-  <button id="yes3">Yes ❤️</button>
 </div>
 
 <!-- FINAL YES -->
@@ -130,7 +130,7 @@ document.getElementById("no1").addEventListener("mouseover",function(){
   let y=(Math.random()*80-40)+"px";
   this.style.transform=`translate(${x},${y})`;
 });
-// If first "No" clicked, show warning page
+// First page "No" click → special warning page
 document.getElementById("no1").addEventListener("click",function(){
   show("pNo1");
 });
@@ -148,11 +148,11 @@ function createHeart(){
 setInterval(createHeart,800);
 
 // Page buttons
-document.getElementById("yes1").onclick=()=>show("p2");
-document.getElementById("yes2").onclick=()=>show("p3");
-document.getElementById("no2").onclick=()=>show("pNo2");
-document.getElementById("yes3").onclick=()=>show("p3");
-document.getElementById("yes4").onclick=()=>show("p3");
+document.getElementById("yes1").onclick=()=>show("p2");  // First yes → second page
+document.getElementById("yes3").onclick=()=>show("p2");  // Warning yes → second page
+document.getElementById("yes2").onclick=()=>show("p3");  // Second page yes → final yes
+document.getElementById("no2").onclick=()=>show("pNo2"); // Second page no → final no
+document.getElementById("yes4").onclick=()=>show("p3");  // Final no page yes → final yes
 
 // Fireworks on final yes page
 function createFirework(){
