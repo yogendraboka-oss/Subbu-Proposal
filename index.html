@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  overflow-x:hidden;
+  text-align:center;
+  color:#333;
+}
+.page{
+  display:none;
+  padding:20px 15px;
+  animation:fade 0.8s;
+  transition:opacity 0.5s;
+}
+@keyframes fade{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+img{
+  width:240px;
+  max-width:90%;
+  border-radius:20px;
+  margin:20px 0;
+  box-shadow:0 10px 20px rgba(0,0,0,0.4);
+  transition:all 0.8s;
+}
+button{
+  font-size:16px;
+  padding:12px 30px;
+  margin:10px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{background:#ff1e4d;}
+button:active{transform:scale(0.95);}
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:float 6s linear infinite;
+  opacity:0.7;
+}
+@keyframes float{
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-100vh);}
+}
+/* Fireworks container */
+#fireworks{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  overflow:hidden;
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div id="p1" class="page" style="display:block;">
+  <h2>Sanuhh, Will You Be My Forever ♾️</h2>
+  <img src="her.jpg" alt="Her Photo">
+  <br>
+  <button id="yes1">Yes ❤️</button>
+  <button id="no1">No 💔</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="p2" class="page">
+  <img src="me.JPG" alt="Me Photo">
+  <p>Timi mero First Love Huna Na Sakey Nii...<br>
+  Mero Antim Timi Lai Nai Banauna Chahanxu.<br><br>
+  Will You Be My Future Partner?</p>
+  <button id="yes2">Yes ❤️</button>
+  <button id="no2">No 💔</button>
+</div>
+
+<!-- PAGE NO MESSAGE -->
+<div id="pNo1" class="page">
+  <img src="me.jpg" alt="Me Photo">
+lolol  <p>Kina Ho Yasto Aatanka...<br>
+  Mayaluuu ❤️<br>
+  Your Subbu Loves You A Lot So Please Click Yes!</p>
+  <button id="yes3">Yes ❤️</button>
+</div>
+
+<!-- FINAL YES -->
+<div id="p3" class="page">
+  <img src="together.jpg" alt="Together Photo">
+  <h3>
+    Ma Sadai Timi Sangai Xuu<br>
+    Ra Timlai Sadai Saath Diney Xuu ❤️<br>
+    Subbu Loves You More Than You Think… 💖
+  </h3>
+  <div id="fireworks"></div>
+</div>
+
+<!-- FINAL NO -->
+<div id="pNo2" class="page">
+  <h3>No ta option nai xaina mero Mayaluuu... ❤️</h3>
+  <button id="yes4">Yes ❤️</button>
+</div>
+
+<script>
+// Smooth page transition
+function show(id){
+  let pages=document.querySelectorAll(".page");
+  pages.forEach(p=>p.style.display="none");
+  let newPage=document.getElementById(id);
+  newPage.style.opacity=0;
+  newPage.style.display="block";
+  setTimeout(()=>{newPage.style.opacity=1;},50);
+}
+
+// Runaway "No" button on first page
+document.getElementById("no1").addEventListener("mouseover",function(){
+  let x=(Math.random()*80-40)+"px";
+  let y=(Math.random()*80-40)+"px";
+  this.style.transform=`translate(${x},${y})`;
+});
+// If first "No" clicked, show warning page
+document.getElementById("no1").addEventListener("click",function(){
+  show("pNo1");
+});
+
+// Floating hearts animation
+function createHeart(){
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(15+Math.random()*20)+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>{heart.remove()},6000);
+}
+setInterval(createHeart,800);
+
+// Page buttons
+document.getElementById("yes1").onclick=()=>show("p2");
+document.getElementById("yes2").onclick=()=>show("p3");
+document.getElementById("no2").onclick=()=>show("pNo2");
+document.getElementById("yes3").onclick=()=>show("p3");
+document.getElementById("yes4").onclick=()=>show("p3");
+
+// Fireworks on final yes page
+function createFirework(){
+  let f=document.createElement("div");
+  f.style.position="absolute";
+  f.style.width=f.style.height="15px";
+  f.style.background="radial-gradient(circle,#ff1e4d,#ff4d6d)";
+  f.style.left=Math.random()*100+"vw";
+  f.style.top=Math.random()*50+"vh";
+  f.style.borderRadius="50%";
+  document.getElementById("fireworks").appendChild(f);
+  setTimeout(()=>f.remove(),1000);
+}
+function startFireworks(){setInterval(createFirework,200);}
+
+// Start fireworks when final yes page is shown
+document.getElementById("yes2").addEventListener("click",startFireworks);
+document.getElementById("yes3").addEventListener("click",startFireworks);
+document.getElementById("yes4").addEventListener("click",startFireworks);
+</script>
+
+</body>
+</html>
